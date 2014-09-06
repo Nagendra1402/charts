@@ -1,0 +1,85 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+<title>kendo</title>
+ <link href="http://cdn.kendostatic.com/2014.2.716/styles/kendo.common.min.css" rel="stylesheet" />
+    <link href="http://cdn.kendostatic.com/2014.2.716/styles/kendo.default.min.css" rel="stylesheet" />
+    <link href="http://cdn.kendostatic.com/2014.2.716/styles/kendo.dataviz.min.css" rel="stylesheet" />
+    <link href="http://cdn.kendostatic.com/2014.2.716/styles/kendo.dataviz.default.min.css" rel="stylesheet" />
+    <style>
+     html { font-size: 12px; font-family: Arial, Helvetica, sans-serif; }
+     #menu {
+       background-image: linear-gradient(to bottom, #3cb53c 0px, #0f8a0f 100%);
+       }
+     #example {
+      padding-bottom: 10px;
+     }
+    </style>
+    
+    <script src="http://cdn.kendostatic.com/2014.2.716/js/jquery.min.js"></script>
+    <script src="http://cdn.kendostatic.com/2014.2.716/js/angular.min.js"></script>
+    <script src="http://cdn.kendostatic.com/2014.2.716/js/kendo.all.min.js"></script>
+    <script>
+    $(function(){
+    	
+    	  $("#menu").kendoMenu();
+    	 
+    	  $("#grid").kendoGrid({
+              dataSource: {
+                  type: "json",
+                  transport: {
+                      read: "http://localhost:8080/Collab/collab/chart/IM"
+                  },
+                  pageSize: 15
+              },
+              height: 400,
+              //groupable: true,
+              sortable: true,
+              pageable: {
+                  refresh: true,
+                  pageSizes: true,
+                  buttonCount: 5
+              },
+              filterable: {
+                  mode: "row"
+              },
+              columns: [{
+                  field: "imNumber",
+                  title: "IM",
+              }, {
+                  field: "assignmentGroup",
+                  title: "Assignment Group"
+              }, {
+                  field: "description",
+                  title: "Description"
+              }, {
+                  field: "severity",
+                  title: "Severity"
+              }]
+          });
+    });
+
+    
+    </script>
+</head>
+<body>
+
+<div id="example">
+ <div id="navigation">
+  <ul id="menu">
+   <li>welcome</li>
+   <li>Severity
+     <ul>
+      <li>Low</li>
+      <li>High</li>
+      <li>Medium</li>
+      </ul>
+   </li>
+  </ul>
+ </div>
+</div> 
+<div id="chart"></div>
+ <div id="grid"></div>
+</body>
+</html>
